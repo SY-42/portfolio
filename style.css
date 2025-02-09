@@ -113,6 +113,11 @@ section {
   
 }
 
+.project-year {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-variant-numeric: oldstyle-nums
+}
+
 
 #profile-stats {
   dl {
@@ -132,5 +137,61 @@ section {
       text-align: left;
       font-size: xx-large;
     }
+  }
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+.swatch {
+  width: 10px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 50%;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  border-width: 1px;
+  border-style: solid;
+  border-color: oklch(80% 3% 200);
+  padding: 10px;
+  margin: 20px;
+  flex: 1;
+}
+
+.legend-item{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 10px;
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  cursor: pointer;
+  transition: 300ms;  
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
   }
 }
