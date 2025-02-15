@@ -90,6 +90,11 @@ article {
   }
 }
 
+circle.selected {
+  fill: #ff6b6b;
+}
+
+
 h1 {
   font-size: 400%;
 }
@@ -118,8 +123,11 @@ section {
   font-variant-numeric: oldstyle-nums
 }
 
+.gridlines {
+  opacity: 20%;
+}
 
-#profile-stats {
+#profile-stats, #stats {
   dl {
     display: grid;
     gap: 10px;
@@ -194,4 +202,69 @@ path {
   &:is(path) {
     fill: var(--color);
   }
+}
+
+dl.info, dl#language-breakdown {
+  gap: 10px;
+  display: grid;
+  align-items: right;
+  dt {
+    font-size:90%;
+    grid-row: 1;
+    color: oklch(50% 10% 200 / 60%);
+  }
+  dd {
+    grid-row: 2;
+    padding-right: 10px;
+    font-size: 90%;
+    margin: 0;
+    text-align: left;
+    font-size: small;
+  }
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 2px;
+  backdrop-filter:  blur(10px);
+  padding: 10px;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+dl.info {
+  /* ... other styles ... */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
 }
